@@ -137,17 +137,17 @@ testing_tools:
   # renovate: datasource=github-releases depName=kubernetes-sigs/kind depType=testing_tools
   kind: '0.33.0'
   # renovate-digest: datasource=git-refs depName=nvkind packageName=https://github.com/NVIDIA/nvkind branch=main depType=testing_tools
-  nvkind: 'c57050497cffee36f10c8b918d2727c4f26d886e'
+  nvkind: 'b2a7778f014079daefdd81c13257540cf399fe45'
   # renovate: datasource=github-releases depName=tilt-dev/ctlptl depType=testing_tools
   ctlptl: '0.9.6'
   # renovate: datasource=github-releases depName=tilt-dev/tilt depType=testing_tools
-  tilt: '0.37.8'
+  tilt: '0.37.9'
   # Keep in step with sigs.k8s.io/controller-runtime in go.mod: setup-envtest is
   # released from that repo under the tools/setup-envtest/vX.Y.Z tag series, and
   # the envtest control-plane binaries it fetches are matched to the
   # controller-runtime the tests link against.
   # renovate: datasource=go depName=sigs.k8s.io/controller-runtime/tools/setup-envtest depType=testing_tools
-  setup_envtest: 'v0.25.2'
+  setup_envtest: 'v0.25.3'
   # CI installs the released linux/amd64 binary rather than `go install`ing the
   # module, so the gate no longer depends on sum.golang.org being up (#2667).
   # The two are the same code: `tools/setup-envtest/v0.25.0` and `v0.25.0` are
@@ -165,9 +165,9 @@ testing_tools:
   # linux/amd64 only, for the reason on oasdiff_sha256_linux_amd64: this feeds
   # the setup-build-tools action, which runs on ubuntu runners, while
   # tools/setup-tools covers local dev on other platforms.
-  setup_envtest_sha256_linux_amd64: '94534f83896f3b09934d9570b213fbda04aa5c17457942270928cdca0317bf9b'
+  setup_envtest_sha256_linux_amd64: '581fc193f1b9d1603956e59be02f3c2fd5747487396403cf021664f78ced0ebe'
   # renovate: datasource=github-releases depName=helm/helm depType=testing_tools
-  helm: 'v4.3.1'
+  helm: 'v4.3.2'
   # renovate: datasource=github-releases depName=databus23/helm-diff depType=testing_tools
   helm_diff: 'v3.15.15'
   # helm_diff_checksums are refreshed automatically by tools/update-helm-diff-checksums
@@ -180,14 +180,14 @@ testing_tools:
     darwin_amd64: '214d890745b45679400442552ad4554fb4df622b92d031931536eff85bdb46c2'
     darwin_arm64: 'af2834052ba32fe8006a44a31db16cad30baf1c46f6b59160b092974578d7798'
   # renovate: datasource=github-releases depName=helmfile/helmfile depType=testing_tools
-  helmfile: 'v1.8.2'
+  helmfile: 'v1.8.5'
   # helmfile_checksums are refreshed automatically by tools/update-helmfile-checksums
   # via Renovate postUpgradeTasks whenever the helmfile version above is bumped.
   helmfile_checksums:
-    linux_amd64: 'f179485c5bb9f8e20fbd8ea16d8807915988aba4d60131ee864fb3232452716e'
-    linux_arm64: '9163f0d7ad088d243d7305ba09c3465aac02dfebd658d46c62dbdaa11c224b16'
-    darwin_amd64: 'e99b669bb02729d5c4b0f5de9d830298d336d5968dcac76c7c01635f67095574'
-    darwin_arm64: '0e788f4aa7b4eea1ec0d1e278e0e66e845d5733be5f4e6cb7f832c779e656c72'
+    linux_amd64: 'e10344a4e6121689265c8fbe8ce96977b4722a9f953db862014a08b99938c333'
+    linux_arm64: '023b28a0630b60b392407f107b336502d11fec7e901dc631cfff7d2cc86a80c2'
+    darwin_amd64: '4a3919de8d4401a0e3ab751a4f15806c0b72561c1045eebe0c9ad91d90f90021'
+    darwin_arm64: 'aa8c5e0c0ebb331e5a3eacbe3ee4bacd45f8a0c6ef361a79dea23b7bf4c4a76f'
   # renovate: datasource=github-releases depName=kubernetes-sigs/kwok depType=testing_tools
   kwok: 'v0.8.0'
   # renovate: datasource=github-releases depName=kyverno/chainsaw depType=testing_tools
@@ -200,24 +200,24 @@ testing_tools:
     darwin_amd64: 'ddb56002ff8c6265f55ec40c82eb0ef0dddec5127dd12d4fc5e7953453481f4b'
     darwin_arm64: '502bef17dd822217e82590e9ccf01c1e26a56b3fa34a835789b9af73e82a169a'
   # renovate: datasource=github-releases depName=mikefarah/yq depType=testing_tools
-  yq: 'v4.54.1'
+  yq: 'v4.54.3'
   # AWS CLI used by the KMS e2e to provision keys against the MiniStack emulator.
   # renovate: datasource=pypi depName=awscli depType=testing_tools
-  awscli: '1.46.2'
+  awscli: '1.46.3'
   # MiniStack: MIT-licensed, token-free AWS emulator (https://ministack.org) used
   # by the KMS e2e in place of LocalStack, whose latest/stable images now refuse
   # to boot without a paid license token. Pinned (never :latest) for reproducibility.
   # Run with USE_SSL=1: sigstore's awskms signer hardcodes https://, so the e2e
   # serves TLS with a mkcert cert (see mkcert below).
   # renovate: datasource=docker depName=ministackorg/ministack depType=testing_tools
-  ministack_image: 'ministackorg/ministack:1.5.36'
+  ministack_image: 'ministackorg/ministack:1.5.44'
   # OpenBAO: the Linux Foundation Apache-2.0 fork of HashiCorp Vault, used by the
   # Vault KMS e2e to exercise the hashivault:// signing/verification path against
   # a real Transit secrets engine. API-identical to Vault; the sigstore hashivault
   # provider drives it over plain HTTP in dev mode (no TLS needed). Pinned (never
   # :latest) for reproducibility.
   # renovate: datasource=docker depName=openbao/openbao depType=testing_tools
-  openbao_image: 'openbao/openbao:2.7.2'
+  openbao_image: 'openbao/openbao:2.7.3'
   # mkcert issues a trusted localhost cert for MiniStack's TLS and installs its CA
   # into the system trust store, so the Go AWS SDK accepts the awskms:// endpoint.
   # renovate: datasource=github-releases depName=FiloSottile/mkcert depType=testing_tools
@@ -263,7 +263,7 @@ testing_tools:
   # kustomize-controller and helm-controller are the only controllers the
   # bundle consumes (OCIRepository -> Kustomization -> HelmRelease).
   # renovate: datasource=github-releases depName=fluxcd/flux2 depType=testing_tools
-  flux_version: 'v2.10.0'
+  flux_version: 'v2.10.1'
   # In-cluster Git server for the KWOK flux-git deployer lane (issue #963).
   # Rootless variant so the admin-user bootstrap can `kubectl exec gitea
   # admin user create` directly without su gymnastics.
